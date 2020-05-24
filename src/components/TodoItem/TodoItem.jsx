@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { ReactComponent as Edit } from '../../assets/edit.svg';
-import { ReactComponent as Trash } from '../../assets/trash.svg';
+import { ReactComponent as Edit } from '../../assets/edit.svg'
+import { ReactComponent as Trash } from '../../assets/trash.svg'
 import style from './style.module.css'
 
 export const TodoItem = ({
@@ -24,18 +24,36 @@ export const TodoItem = ({
 
     return (
         <li className={style.todoItem}>
-            <h4 className={style.title}>{title}</h4>
-            <p className={style.body}>{body}</p>
+            <h4
+                className={style.title}
+                style={{
+                    textDecoration: isCompleted ? 'line-through' : 'none'
+                }}
+            >
+                {title}
+            </h4>
+            <p
+                className={style.body}
+                style={{
+                    textDecoration: isCompleted ? 'line-through' : 'none'
+                }}
+            >
+                {body}
+            </p>
             <div className={style.controls}>
                 <input
-                className={style.checkbox}
+                    className={style.checkbox}
                     type="checkbox"
                     name="competed"
                     onChange={handleComplete}
                     checked={isCompleted}
                 />
-                <div className={style.deleteBtn} onClick={handleDelete}><Trash /></div>
-                <div className={style.editBtn} onClick={handleEdit}><Edit /></div>
+                <div className={style.deleteBtn} onClick={handleDelete}>
+                    <Trash />
+                </div>
+                <div className={style.editBtn} onClick={handleEdit}>
+                    <Edit />
+                </div>
             </div>
         </li>
     )

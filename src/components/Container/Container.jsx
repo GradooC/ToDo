@@ -4,25 +4,9 @@ import { TodoItem } from '../TodoItem/TodoItem'
 
 import style from './style.module.css'
 
-const initState = [
-    {
-        id: 0,
-        title: 'Lorem, ipsum.',
-        body:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus quaerat tempora et consequatur maxime pariatur nam!',
-        isCompleted: false
-    },
-    {
-        id: 1,
-        title: 'Lorem',
-        body:
-            'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus quaerat tempora!',
-        isCompleted: true
-    }
-]
-
 export const Container = () => {
     const [todos, setTodos] = useState([])
+    console.log("Container -> todos", todos)
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
 
@@ -36,7 +20,7 @@ export const Container = () => {
     }, [todos])
 
     const updateItem = (id, newProps) => {
-        const updatedItemIndex = todos.findIndex((todo) => todo.id !== id)
+        const updatedItemIndex = todos.findIndex((todo) => todo.id === id)
         const newTodos = todos.map((todo) =>
             todo.id === updatedItemIndex ? { ...todo, ...newProps } : todo
         )
@@ -51,7 +35,7 @@ export const Container = () => {
             id: newItemId,
             title,
             body,
-            isCompeted: false
+            isCompleted: false
         }
         setTitle('')
         setBody('')
