@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { last } from 'lodash';
 import { TodoItem } from '../TodoItem/TodoItem'
 
 import style from './style.module.css'
@@ -23,8 +24,14 @@ export const Container = () => {
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target.title.value)
-        console.log(e.target.body.value)
+        const lastItem = last(todos)
+        const newItemId = lastItem ? lastItem.id + 1 : 0
+        const newTodo = {
+            id: newItemId,
+            title: e.target.title.value,
+            body: e.target.body.value
+        }
+        setTodos([...todos, newTodo])
     }
 
     return (
