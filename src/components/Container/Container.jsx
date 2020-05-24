@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { last } from 'lodash';
+import { last } from 'lodash'
 import { TodoItem } from '../TodoItem/TodoItem'
 
 import style from './style.module.css'
@@ -34,6 +34,11 @@ export const Container = () => {
         setTodos([...todos, newTodo])
     }
 
+    const deleteItem = (id) => {
+        const filteredTodos = todos.filter((todo) => todo.id !== id)
+        setTodos(filteredTodos)
+    }
+
     return (
         <div className={style.container}>
             <h1 className={style.header}>To Do List</h1>
@@ -45,8 +50,12 @@ export const Container = () => {
                 </form>
             </div>
             <ul className={style.todoList}>
-                {todos.map(({ id, title, body }) => (
-                    <TodoItem key={id} title={title} body={body} />
+                {todos.map((todo) => (
+                    <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        deleteHandler={deleteItem}
+                    />
                 ))}
             </ul>
         </div>
