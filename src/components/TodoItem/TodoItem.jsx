@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { ReactComponent as Edit } from '../../assets/edit.svg';
+import { ReactComponent as Trash } from '../../assets/trash.svg';
 import style from './style.module.css'
 
 export const TodoItem = ({
@@ -22,11 +24,19 @@ export const TodoItem = ({
 
     return (
         <li className={style.todoItem}>
-            <h6>{title}</h6>
-            <p>{body}</p>
-            <input type="checkbox" name="competed" id="" onChange={handleComplete} checked={isCompleted} />
-            <button onClick={handleDelete}>Delete</button>
-            <button onClick={handleEdit}>Edit</button>
+            <h4 className={style.title}>{title}</h4>
+            <p className={style.body}>{body}</p>
+            <div className={style.controls}>
+                <input
+                className={style.checkbox}
+                    type="checkbox"
+                    name="competed"
+                    onChange={handleComplete}
+                    checked={isCompleted}
+                />
+                <div className={style.deleteBtn} onClick={handleDelete}><Trash /></div>
+                <div className={style.editBtn} onClick={handleEdit}><Edit /></div>
+            </div>
         </li>
     )
 }

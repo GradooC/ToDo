@@ -78,22 +78,26 @@ export const Container = () => {
     return (
         <div className={style.container}>
             <h1 className={style.header}>To Do List</h1>
-            <div className={style.inputSection}>
-                <form onSubmit={handleOnSubmit}>
-                    <input
-                        type="text"
-                        name="title"
-                        value={title}
-                        onChange={handleTitleChange}
-                    />
-                    <textarea
-                        name="body"
-                        value={body}
-                        onChange={handleBodyChange}
-                    ></textarea>
-                    <button>Add To Do</button>
-                </form>
-            </div>
+            <form onSubmit={handleOnSubmit} className={style.inputSection}>
+                <input
+                    className={style.title}
+                    autoComplete="off"
+                    placeholder='Enter Title'
+                    type="text"
+                    name="title"
+                    value={title}
+                    onChange={handleTitleChange}
+                />
+                <textarea
+                    className={style.body}
+                    placeholder='Enter Task'
+                    rows={3}
+                    name="body"
+                    value={body}
+                    onChange={handleBodyChange}
+                ></textarea>
+                <button className={style.addButton}>Add To Do</button>
+            </form>
             <ul className={style.todoList}>
                 {[...todos]
                     .sort((a, b) => -a.title.localeCompare(b.title))

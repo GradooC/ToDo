@@ -1,0 +1,35 @@
+.todoItem {
+    padding: 10px;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.editBtn {
+    cursor: pointer;
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    background-color: blue;
+    
+}
+
+.deleteBtn {
+    cursor: pointer;
+    padding: 7px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    background-color: var(--red);
+    margin: 0 10px;
+}
+
+.checkbox {
+    width: 30px;
+    height: 30px;
+}

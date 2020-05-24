@@ -1,0 +1,46 @@
+.container {
+    margin:  0 auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--gray);;
+}
+
+.header {
+    background-color: var(--yellow);
+    text-align: center;
+    padding: 5px 0;
+}
+
+.inputSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    /* height: 40px; */
+    padding: 0 10px;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--gray);
+}
+
+.body {
+    outline: none;
+    padding: 0 10px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid var(--gray);
+}
+
+.addButton {
+    border: none;
+    outline: none;
+    padding: 10px 0;
+    text-transform: uppercase;
+    background-color: var(--green);
+    font-weight: 800;
+}

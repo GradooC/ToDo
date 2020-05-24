@@ -1,10 +1,16 @@
 :root {
-  --white: '#FFFFFF';
-  --gray: '#999799';
-  --green: '#BDD358';
-  --red: '#E5625E';
-  --yellow: '#E5E059';
+  --white: #FFFFFF;
+  --gray: #999799;
+  --green: #BDD358;
+  --red: #E5625E;
+  --yellow: #E5E059;
 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
