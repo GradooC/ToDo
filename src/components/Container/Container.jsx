@@ -21,6 +21,13 @@ const initState = [
 
 export const Container = () => {
     const [todos, setTodos] = useState(initState)
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
+
+    const removeItem = id => {
+        const filteredTodos = todos.filter((todo) => todo.id !== id)
+        setTodos(filteredTodos)
+    }
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
@@ -28,15 +35,29 @@ export const Container = () => {
         const newItemId = lastItem ? lastItem.id + 1 : 0
         const newTodo = {
             id: newItemId,
-            title: e.target.title.value,
-            body: e.target.body.value
+            title,
+            body
         }
+        setTitle('')
+        setBody('')
         setTodos([...todos, newTodo])
     }
 
-    const deleteItem = (id) => {
-        const filteredTodos = todos.filter((todo) => todo.id !== id)
-        setTodos(filteredTodos)
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value)
+    }
+
+    const handleBodyChange = (e) => {
+        setBody(e.target.value)
+    }
+
+    const deleteItem = (id) => removeItem(id)
+
+    const editItem = id => {
+        const editingTodo = todos.find((todo) => todo.id === id)
+        setTitle(editingTodo.title)
+        setBody(editingTodo.body)
+        removeItem(id)
     }
 
     return (
@@ -44,8 +65,17 @@ export const Container = () => {
             <h1 className={style.header}>To Do List</h1>
             <div className={style.inputSection}>
                 <form onSubmit={handleOnSubmit}>
-                    <input type="text" name="title" />
-                    <textarea name="body"></textarea>
+                    <input
+                        type="text"
+                        name="title"
+                        value={title}
+                        onChange={handleTitleChange}
+                    />
+                    <textarea
+                        name="body"
+                        value={body}
+                        onChange={handleBodyChange}
+                    ></textarea>
                     <button>Add To Do</button>
                 </form>
             </div>
@@ -55,6 +85,7 @@ export const Container = () => {
                         key={todo.id}
                         todo={todo}
                         deleteHandler={deleteItem}
+                        editHandler={editItem}
                     />
                 ))}
             </ul>
