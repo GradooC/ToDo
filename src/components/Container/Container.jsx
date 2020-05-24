@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { last } from 'lodash'
 import { TodoItem } from '../TodoItem/TodoItem'
 
@@ -22,9 +22,18 @@ const initState = [
 ]
 
 export const Container = () => {
-    const [todos, setTodos] = useState(initState)
+    const [todos, setTodos] = useState([])
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
+
+    useEffect(() => {
+        const todos = JSON.parse(localStorage.getItem('todos')) || []
+        setTodos(todos)
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
 
     const updateItem = (id, newProps) => {
         const updatedItemIndex = todos.findIndex((todo) => todo.id !== id)
@@ -82,7 +91,7 @@ export const Container = () => {
                 <input
                     className={style.title}
                     autoComplete="off"
-                    placeholder='Enter Title'
+                    placeholder="Enter Title"
                     type="text"
                     name="title"
                     value={title}
@@ -90,7 +99,7 @@ export const Container = () => {
                 />
                 <textarea
                     className={style.body}
-                    placeholder='Enter Task'
+                    placeholder="Enter Task"
                     rows={3}
                     name="body"
                     value={body}
